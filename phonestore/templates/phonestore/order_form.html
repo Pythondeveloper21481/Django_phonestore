@@ -1,0 +1,35 @@
+{% extends 'phonestore/main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container p-5">
+<form action="" method="POST"  >
+{% csrf_token %} 
+<div class="   form-order mb-2" style="background-color: aqua;">
+  {{formset.management_formset}}
+ 
+  {{formset}} <br>
+ 
+<div class="" style="color: blueviolet;">
+ 
+  {{form}}
+
+  
+</div>
+<div style="color: rgb(226, 43, 101);">
+  {{form_c}}
+</div>
+  
+</div>
+<div class="pt-5">
+  <button type="submit" class="btn btn-primary ">Submit</button>
+</div>
+  
+</form>
+
+
+
+
+</div>
+
+{% endblock %}

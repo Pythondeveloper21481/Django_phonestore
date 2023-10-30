@@ -1,0 +1,42 @@
+{% extends 'phonestore/main.html' %}
+
+
+
+{% block content %}
+
+
+
+{% if messages %}
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+{% endif %}
+
+
+
+
+<div class="container p-5">
+    <h3 class="prof_name">{{request.user.customer.name}} info</h3>
+<div class="card" style="width: 18rem;">
+    {% if request.user.customer.photo %}
+    <img src="{{request.user.customer.photo.url}}" class="card-img-top " alt="AVATAR">
+    
+
+    {% endif %}
+    
+  </div>
+  <div class="card-body">
+    <form action="" method="POST" enctype="multipart/form-data"  >
+        {% csrf_token %} 
+        
+        <div >
+            
+          {{form.as_p}}
+       </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+</div>
+
+
+{% endblock %}

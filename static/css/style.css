@@ -1,0 +1,17 @@
+.navbar{
+    background-color: #e3f2fd;
+}
+.nav-footer{
+   background-color:  #aff9f99d !important
+}
+
+.form-order{
+    display: grid;
+    width: 10%;
+    
+}
+
+.prof_name{
+    color: blue;
+    text-align: center !important;
+}

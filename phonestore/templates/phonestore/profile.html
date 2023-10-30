@@ -1,0 +1,91 @@
+{% extends 'phonestore/main.html' %}
+
+
+
+{% block content %}
+
+
+
+{% if messages %}
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+{% endif %}
+
+<div class="container  p-5">
+  <div class="row ">
+    <div class="col ">
+      <h5 >  Name: <span class="badge badge-info">{{request.user.customer}} 
+        
+      </span></h5>
+          
+    </div>
+    <div class="col">
+      <h6>  total  : <span class="badge badge-dark">{{total_order}}</span></h6>
+      
+    </div>
+    <div class="col">
+      <h6>  pending : <span class="badge badge-dark">{{p_total_orders}}</span></h6>
+      
+    </div>
+    <div class="col">
+      <h6 >  delivred : <span class="badge badge-dark">{{d_total_orders}}</span></h6>
+      
+    </div>
+    <div class="col">
+      <h6>  in progress : <span class="badge badge-dark">{{i_total_orders}}</span></h6>
+      
+    </div>
+    <div class="col">
+      <h6>  out of orders : <span class="badge badge-dark">{{o_total_orders}}</span></h6>
+      
+    </div>
+   
+    
+  </div>
+</div>
+
+
+
+
+<div class="container p-5">
+   
+      {% csrf_token %}
+      <table class="table ">
+        <thead class="thead-dark">
+          <tr>
+            
+            <th scope="col">Phone</th>
+            <th scope="col">Category</th>
+            <th scope="col">Date</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in orders %}
+          <tr>
+            
+            <td>{{item.phone}}</td>
+            <td>{{item.phone.category}}</td>
+            <td>{{item.date_created}}</td>
+            <td>{{item.status}}</td>
+            <td>
+              <a href="{% url 'update' item.id %}">
+                
+                <i class="fa-solid fa-pen-to-square"></i>
+              </a>
+              <a href="{% url 'delete' item.id %}">
+                <i class="fa-solid fa-trash-can"></i> 
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+    
+    
+    
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'phonestore/main.html' %}
+
+
+
+{% block content %}
+<h1 class=" p-5">Phones </h1>
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Marque</th>
+        <th scope="col">Model</th>
+        <th scope="col">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for phone in phones %} 
+      <tr>
+        <th scope="row">{{phone.id}}</th>
+        <td>{{phone.marque}}</td>
+        <td>{{phone.model}}</td>
+        <td>${{phone.price}}</td>
+      </tr>
+      {% endfor %} 
+      
+    </tbody>
+  </table>
+  <h6 class="card-subtitle mb-2 text-muted"><a class="btn btn-success" href="#">Add Phone </a></h6>
+
+</div>
+
+
+{% endblock %}

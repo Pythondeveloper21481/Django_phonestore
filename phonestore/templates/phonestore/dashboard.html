@@ -1,0 +1,137 @@
+{% extends 'phonestore/main.html' %}
+
+
+
+{% block content %}
+{% if messages %}
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+<h1 class="p-5">Dasboard </h1>
+<div class="container pb-5">
+  <div class="row ">
+    <div class="col-sm ">
+      <h6 > Total orders: <span class="badge badge-info">{{total_orders}}</span></h6>
+          
+    </div>
+    <div class="col-sm">
+      <h6 > Pending orders: <span class="badge badge-dark">{{p_total_orders}}</span></h6>
+      
+    </div>
+    <div class="col-sm">
+      <h6 > Delivred orders: <span class="badge badge-success">{{d_total_orders}}</span></h6>
+    </div>
+    <div class="col-sm">
+      <h6 > Out of orders: <span class="badge badge-danger">{{o_total_orders}}</span></h6>
+    </div>
+    <div class="col-sm">
+      <h6 > Progress orders: <span class="badge badge-warning">{{i_total_orders}}</span></h6>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="container">
+  
+<!-- card -->
+<div class="row ">
+      
+    <div class="col ">
+
+        
+      <div class="card " >
+        
+        <div class="card-body">
+          <h5 class="card-title">customer</h5>
+          
+          <table class="table " >
+            <thead  class="table-secondary">
+              <tr>
+                <th   scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">email</th>
+                <th scope="col">age</th>
+                <th scope="col">show</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in customer %} 
+              <tr>
+                <th  scope="row">{{item.id}}</th>
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.age}}</td>
+                <td>
+                <a href="{% url 'customer' item.id %}">
+                  <i class="far fa-eye"></i>
+                </a>
+                </td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+          <h6 class="card-subtitle mb-2 text-muted"><a class="btn btn-success" href="{% url 'create_C' %}">create customer</a></h6>
+        </div>
+      </div>
+      <!-- orders -->
+      <div class="card" >
+        
+        <div class="card-body">
+          <h5 class="card-title">Orders</h5>
+          
+          <table class="table "  >
+            <thead  class="table-secondary">
+              <tr>
+                <th scope="col">id</th>
+                <th scope="col">customer</th>
+                <th scope="col">phone</th>
+                <th scope="col">tags</th>
+                <th scope="col">date_created</th>
+                <th scope="col">status</th>
+                <th scope="col">action</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in orders %} 
+              <tr  >
+                <th   scope="row">{{item.id}}</th>
+                <td >{{item.customer}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.tags}}</td>
+                <td>{{item.date_created}}</td>
+                <td>{{item.status}}</td>
+                <td>
+                    <a href="{% url 'update' item.id %}">
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                
+                    <a href="{% url 'delete' item.id %}">
+                      <i class="fa-solid fa-trash-can"></i> 
+                    </a>
+                </td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+          
+
+          <h6 class="card-subtitle mb-2 text-muted"><a class="btn btn-success" href="{% url 'create' %}">create order</a></h6>
+        </div>
+      </div>
+
+      <!-- end orders -->
+    </div>
+       
+</div>
+<!-- end Card -->
+
+
+</div>
+
+{% endblock %}
